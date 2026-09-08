@@ -502,51 +502,181 @@
 ════════════════════════════ -->
 <div id="tc">
   <div id="jz"><div id="jk"></div></div>
-  <div id="az"></div>
-  <div id="fire-btn">
-    <span class="fire-icon">🔫</span>
-    <span class="fire-label">FIRE</span>
-    <span class="fire-hint">HOLD</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEAD WEIRD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!--        TITLE SCREEN       -->
+<!-- ========================= -->
+<div id="menus">
+
+  <div id="title" class="scr">
+    <div class="game-title">DEAD WEIRD</div>
+    <div class="subtitle">Ugly Truths · Beautiful Lights · Also Zombie Cows</div>
+    <div class="build">build 2026-07-21-r2</div>
+
+    <div class="view-modes">👁 FIRST PERSON &nbsp; 🎯 TOP DOWN</div>
+
+    <button id="demo-b" class="btn">▶ PLAY FREE DEMO</button>
+    <button id="full-b" class="btn">🔓 FULL GAME $4.99</button>
+
+    <button id="howto-b" class="btn small">📖 HOW TO PLAY</button>
+
+    <div class="credit">catfishheads.site · by Joey Donner</div>
   </div>
-  <div id="reload-btn" onclick="startReload()">
-    <span style="font-size:20px">⟳</span>
-    <span style="font-size:9px;display:block;letter-spacing:1px;margin-top:1px;">RELOAD</span>
+
+  <!-- ========================= -->
+  <!--       HOW TO PLAY         -->
+  <!-- ========================= -->
+  <div id="howto" class="scr off">
+
+    <h2>HOW TO PLAY</h2>
+
+    <h3>🖥 DESKTOP</h3>
+    <p>W A S D — Move</p>
+    <p>MOUSE — Aim</p>
+    <p>LEFT CLICK — 🔫 SHOOT</p>
+    <p>R — Reload</p>
+    <p>1 2 3 4 — Switch weapon</p>
+    <p>V — Toggle view</p>
+    <p>ESC — Release mouse</p>
+
+    <h3>📱 MOBILE</h3>
+    <p>LEFT STICK — Move</p>
+    <p>RIGHT SWIPE — Aim / turn</p>
+    <p>🔴 FIRE — Shoot</p>
+    <p>⟳ BTN — Reload</p>
+    <p>WEP SLOTS — Switch weapon</p>
+
+    <h3>⚔️ WEAPONS</h3>
+    <p>1 🔫 Pistol — Always</p>
+    <p>2 🦆 Duck Gun — Wave 2 · quacks</p>
+    <p>3 🍕 Pizza Cannon — Wave 4 · explosive</p>
+    <p>4 🎸 Guitar — Wave 6 · kills ALL</p>
+
+    <h3>🎯 TIPS</h3>
+    <ul>
+      <li>Chain kills → COMBO bonus</li>
+      <li>❤️ heal · ⚡ speed · 🛡️ shield · 💎 score</li>
+      <li>Boss every 3 waves — big score</li>
+      <li>FP: click canvas to lock mouse</li>
+      <li>Guitar kills everything — save it</li>
+      <li>🎪 Weird events happen mid-wave</li>
+    </ul>
+
+  <h3>🎪 15 RANDOM WEIRD EVENTS</h3>
+<ul>
+  <li>🤡 CLOWN NIGHTMARE — clownwave</li>
+  <li>🎪 Disco Fever — Zombies stop to dance</li>
+  <li>☎️ Phone Call — Zombie philosophizes</li>
+  <li>🍕 Pizza Delivery — Drone heals +40 HP</li>
+  <li>🐄 Cow Stampede — Zombie cows charge</li>
+  <li>🎵 Smooth Jazz — Everyone slows 50%</li>
+  <li>🌧️ Duck Rain — Ammo falls from sky</li>
+  <li>💅 Makeover — Zombies get distracted</li>
+  <li>🤖 Vendor Rage — Ally fires on zombies</li>
+  <li>📺 TV Static — All zombies stunned</li>
+  <li>🎂 Birthday Bonus — +500 score surprise</li>
+  <li>👽 Alien Invasion — UFO beams · kill it for +500×wave</li>
+  <li>🌕 Blood Moon — More zombies, higher score</li>
+  <li>☄️ Asteroid — Random impact, huge area damage</li>
+  <li>🤡 Killer Clowns — Fast clowns with big combo risk</li>
+</ul>
+   
+ <button id="howto-back" class="btn small">← BACK</button>
   </div>
-  <div id="view-toggle" onclick="toggleView()">
-    <span id="vt-fp" style="color:var(--teal)">👁 FP</span>
-    <span style="color:#2a4060"> · </span>
-    <span id="vt-tp" style="color:#2a4060">🎯 TP</span>
+
+  <!-- ========================= -->
+  <!--         PAYWALL           -->
+  <!-- ========================= -->
+  <div id="paywall" class="scr off">
+    <div class="pw-title">UNLOCK</div>
+    <div class="pw-price">$4.99 ONE TIME</div>
+
+    <div class="pw-feats">
+      <div>Unlimited Waves</div>
+      <div>Duck Gun 🦆</div>
+      <div>Pizza Cannon 🍕</div>
+      <div>Guitar 🎸</div>
+      <div>All Boss Waves</div>
+      <div>UFO Invasion 👽</div>
+    </div>
+
+    <button id="pay-btn" class="btn">💳 PAY $4.99</button>
+    <button id="unlock-back" class="btn small">← BACK</button>
   </div>
+
 </div>
 
-<script src="deadweird.js"></script>
-<script>
-// Hide fire indicator after first shot
-(function(){
-  var fired = false;
-  document.addEventListener('mousedown', function(e){
-    if(e.button===0 && !fired && window.G && G.running){
-      fired = true;
-      var fi = document.getElementById('fire-indicator');
-      if(fi){ fi.style.transition='opacity 0.6s'; fi.style.opacity='0';
-        setTimeout(function(){ fi.style.display='none'; }, 650); }
-    }
-  });
-  // Also hide on first mobile fire
-  var fb = document.getElementById('fire-btn');
-  if(fb) fb.addEventListener('touchstart', function(){
-    if(!fired){ fired=true;
-      var fi=document.getElementById('fire-indicator');
-      if(fi){ fi.style.transition='opacity 0.6s'; fi.style.opacity='0';
-        setTimeout(function(){fi.style.display='none';},650); }}
-  });
-})();
+<!-- ========================= -->
+<!--           HUD             -->
+<!-- ========================= -->
+<div id="hud" class="off">
+  <canvas id="gc" width="800" height="600"></canvas>
 
-// Show manual screen
-function showManual(){
-  document.querySelectorAll('.scr').forEach(function(s){ s.classList.add('off'); });
-  document.getElementById('manual').classList.remove('off');
-}
-</script>
+  <div id="score-d"></div>
+  <div id="ammo-d"></div>
+  <div id="wave-d"></div>
+  <div id="hp-d"></div>
+
+<div id="loading">
+  LOADING…
+  <div id="load-bar">
+    <div id="load-fill"></div>
+  </div>
+  <div id="load-pct">0%</div>
+</div>
+  
+<div id="music-btn">🎵</div>
+  <div id="autoaim-btn">🎯</div>
+</div>
+
+<!-- ========================= -->
+<!--        GAME OVER          -->
+<!-- ========================= -->
+<div id="gameover" class="scr off">
+  <div class="go-title">GAME OVER</div>
+  <div class="go-quote">"..."</div>
+
+<div id="unlock-confirm" class="scr off">
+  <div class="uc-title">FULL GAME UNLOCKED!</div>
+  <div class="uc-sub">Thank you for supporting DEAD WEIRD</div>
+
+  <div class="uc-perks">
+    <div>✔ Unlimited Waves</div>
+    <div>✔ All Boss Waves</div>
+    <div>✔ Duck Gun 🦆</div>
+    <div>✔ Pizza Cannon 🍕</div>
+    <div>✔ Guitar 🎸</div>
+    <div>✔ UFO Invasion 👽</div>
+  </div>
+
+  <button id="uc-play" class="btn">▶ PLAY FULL GAME</button>
+  <button id="uc-menu" class="btn small">⌂ MENU</button>
+</div>
+
+  <div class="go-stats">
+    <div>SCORE: <span id="go-score">0</span></div>
+    <div>WAVE: <span id="go-wave">0</span></div>
+    <div>KILLS: <span id="go-kills">0</span></div>
+    <div>BEST COMBO: <span id="go-combo">x1</span></div>
+  </div>
+
+  <button id="retry-btn" class="btn">↺ TRY AGAIN</button>
+  <button id="menu-btn" class="btn small">⌂ MENU</button>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="game.js"></script>
 </body>
+</html>
+
 </html>
